@@ -57,22 +57,6 @@ module.exports = class Bitmex {
     }
   }
 
-  async postOrder(data) {
-    var body = JSON.stringify(data);
-    var path = "/api/v1/order";
-    var method = "post";
-    var header = this.authenticatedHeader(method, path, body);
-    try {
-      return await this._instance({
-        method: "post",
-        data: body,
-        url: path,
-        headers: header
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
   async getUserWallet(data) {
     var body = JSON.stringify(data);
@@ -106,7 +90,137 @@ async getExecution(){
     console.log(e);
   }
 }
+async getExecutionTradeHistory(){
+  
+  var path = "/api/v1/execution/tradeHistory";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
 
+async getGlobalNotification(){
+  
+  var path = "/api/v1/execution/globalNotification";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+async getInstrument(){
+  
+  var path = "/api/v1/instrument";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+async getInstrumentActive(){
+  
+  var path = "/api/v1/instrument/active";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+async getInstrumentActiveAndIndices(){
+  
+  var path = "/api/v1/instrument/activeAndIndices";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+async getInstrumentActiveIntervals(){
+  
+  var path = "/api/v1/instrument/activeIntervals";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async getInstrumentCompositeIndex(){
+  
+  var path = "/api/v1/instrument/compositeIndex";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async getInstrumetIndices(){
+  
+  var path = "/api/v1/instrument/indices";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
 async getFunding(){
   
   var path = "/api/v1/funding";
@@ -123,6 +237,91 @@ async getFunding(){
     console.log(e);
   }
 }
+async getInsurance(){
+  
+  var path = "/api/v1/insurance";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async getLeaderboard(){
+  
+  var path = "/api/v1/leaderboard";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+
+async getLeaderboardName(){
+  
+  var path = "/api/v1/leaderboard/name";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async getLiquidation(){
+  
+  var path = "/api/v1/liquidation";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+async getOrder(){
+  
+  var path = "/api/v1/order";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 
 
   authenticatedHeader(verb, path, body = "") {

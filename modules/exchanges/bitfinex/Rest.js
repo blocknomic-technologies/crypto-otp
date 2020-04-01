@@ -31,10 +31,10 @@ module.exports = class Bitfinex {
 
   // getting a single Ticker
   async getTicker(data) {
-    const url = "v2/ticker";
+    const url = `v2/ticker/${data}`;
     const method = "get";
     try {
-      return await this._instancePublic({ url, method, data});
+      return await this._instancePublic({ url, method});
     } catch (e) {
       console.log(e);
     }
@@ -42,7 +42,7 @@ module.exports = class Bitfinex {
 
   //retrieval of past public trades
   async getTrades(data) {
-    const url = "v2/trades/";
+    const url = `v2/trades/${data}/hist`;
     const method = "get";
     try {
       return await this._instancePublic({url, method, data});

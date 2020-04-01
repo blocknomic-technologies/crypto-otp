@@ -29,6 +29,17 @@ module.exports = class Bitfinex {
     }
   }
 
+  // getting a single Ticker
+  async getTicker(data) {
+    const url = "v2/ticker";
+    const method = "get";
+    try {
+      return await axios._instancePublic({ url, method, data});
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   async postWallets(data) {
     var body = data;
     var path = "/v2/auth/r/wallets";

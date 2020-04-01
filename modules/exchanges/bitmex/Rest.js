@@ -188,22 +188,6 @@ async getInstrumentActiveIntervals(){
   }
 }
 
-async getInstrumentCompositeIndex(){
-  
-  var path = "/api/v1/instrument/compositeIndex";
-  var method = "get";
-  var header = this.authenticatedHeader(method, path);
-  try {
-    return await this._instance({
-      method: "get",
-      
-      url: path,
-      headers: header
-    });
-  } catch (e) {
-    console.log(e);
-  }
-}
 
 async getInstrumetIndices(){
   

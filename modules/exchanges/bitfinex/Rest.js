@@ -34,7 +34,18 @@ module.exports = class Bitfinex {
     const url = "v2/ticker";
     const method = "get";
     try {
-      return await axios._instancePublic({ url, method, data});
+      return await this._instancePublic({ url, method, data});
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  //retrieval of past public trades
+  async getTrades(data) {
+    const url = "v2/trades/";
+    const method = "get";
+    try {
+      return await this._instancePublic({url, method, data});
     } catch (e) {
       console.log(e);
     }

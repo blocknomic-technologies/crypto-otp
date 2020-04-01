@@ -90,6 +90,40 @@ module.exports = class Bitmex {
       console.log(e);
     }
   }
+async getExecution(){
+  
+  var path = "/api/v1/execution";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+async getFunding(){
+  
+  var path = "/api/v1/funding";
+  var method = "get";
+  var header = this.authenticatedHeader(method, path);
+  try {
+    return await this._instance({
+      method: "get",
+      
+      url: path,
+      headers: header
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}
+
 
   authenticatedHeader(verb, path, body = "") {
     var expires = Math.round(new Date().getTime() / 1000) + 60; // 1 min in the future

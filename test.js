@@ -19,10 +19,11 @@ var ticker = { symbols: "tBTCUSD" };
 var bitwallet = {};
 async function test() {
   //  var response = await Bitmex.getUserWallet(wallet);
-  var response = await Bitfinex.getTickers(ticker);
+
   //   var response = await Bitmex.postOrder(data);
   //   var response = await Bitfinex.postWallets(bitwallet);
-  console.log(response);
+ var response1= await Bitmex.getExecution();
+  console.log(response1.data);
 }
 
 test();

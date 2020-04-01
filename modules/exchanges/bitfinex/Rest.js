@@ -95,11 +95,48 @@ module.exports = class Bitfinex {
     const method = "get";
     const url = "/v2/conf/pub:";
     try {
-      return await this._instancePublic({ method, url, data});
+      return await this._instancePublic({ method, url, data });
     } catch(e) {
       console.log(e);
     }
   }
+
+    // retrieval of different types of platform information
+  // {baseUrl}/v2/status/<type>
+  async getStatus(data) {
+    const method = "get";
+    const url = "/v2/status/";
+    try {
+      return await this._instancePublic({ method, url, data });
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  // retrieval of most recent liquidations and time-specific data if timestamp is provided
+  // {baseUrl}/v2/liquidations/hist
+  async getLiquidations(data) {
+    const method = "get";
+    const url = "/v2/liquidations/hist";
+    try {
+      return await this._instancePublic({ method, url, data });
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  // retrieval of leaderboard standings for unrealized profit (period delta), unrealized profit (inception), volume, and realized profit
+  // {baseUrl}/v2/rankings/<Key>:<Time_Frame>:<Symbol/Section>
+  async getLeaderBoards(data) {
+    const method = "get";
+    const url = "/v2/rankings/";
+    try{
+      return await this._instancePublic({ method, url, data });
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
 
   async postWallets(data) {
     var body = data;

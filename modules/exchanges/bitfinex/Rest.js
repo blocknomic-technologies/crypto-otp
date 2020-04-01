@@ -51,6 +51,28 @@ module.exports = class Bitfinex {
     }
   }
 
+  //keeping track of the state of Bitfinex order books
+  async getBook(data) {
+    const method = "get";
+    const url = "/v2/book";
+    try {
+      return await this._instancePublic({url, method, data});
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  //retrieval of statistics on a specified trading pair or funding currency
+  async getStat(data) {
+    const method = "get";
+    const url = "/v2/stats1";
+    try {
+      return await this._instancePublic({ method, url, data });
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   async postWallets(data) {
     var body = data;
     var path = "/v2/auth/r/wallets";

@@ -24,52 +24,80 @@ module.exports = class Bitfinex {
         method: method,
         data: body
       });
-    } catch (e) {
+    } catch(e) {
       console.log(e);
     }
   }
 
   // getting a single Ticker
+  // {baseUrl}/v2/ticker/<Symbol>
   async getTicker(data) {
-    const url = "/v2/ticker";
     const method = "get";
+    const url = "/v2/ticker/";
     try {
       return await this._instancePublic({ url, method, data });
-    } catch (e) {
+    } catch(e) {
       console.log(e);
     }
   }
 
   //retrieval of past public trades
+  // {baseUrl}/v2/trades/<Symbol>/hist
   async getTrades(data) {
-    const url = "/v2/trades";
     const method = "get";
+    const url = "/v2/trades/";
     try {
       return await this._instancePublic({ url, method, data });
-    } catch (e) {
+    } catch(e) {
       console.log(e);
     }
   }
 
   //keeping track of the state of Bitfinex order books
+  // {baseUrl}/v2/book/<Symbol>/<Precision>
   async getBook(data) {
     const method = "get";
-    const url = "/v2/book";
+    const url = "/v2/book/";
     try {
       return await this._instancePublic({url, method, data});
-    } catch (e) {
+    } catch(e) {
       console.log(e);
     }
   }
 
   //retrieval of statistics on a specified trading pair or funding currency
-  async getStat(data) {
+  // {baseUrl}/v2/stats1/<Key>:<Size>:<Symbol>:<Side/Section>
+  async getStats(data) {
     const method = "get";
-    const url = "/v2/stats1";
+    const url = "/v2/stats1/";
     try {
       return await this._instancePublic({ method, url, data });
-    } catch (e) {
+    } catch(e) {
       console.log(e)
+    }
+  }
+
+  // getting OCHL (Open, Close, High, Low) and volume data for the specified funding currency or trading pair
+  // {baseUrl}/v2/candles/trade:<TimeFrame>:<Symbol/Section>
+  async getCandles(data) {
+    const method = "get";
+    const url = "/v2/candles/trade:";
+    try { 
+      return await this._instancePublic({ method, url, data });
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  //Fetch currency and symbol site configuration data.
+  //{baseUrl}/v2/conf/<pub>:<Action>:<Object>:<Detail>
+  async getConfigs(data) {
+    const method = "get";
+    const url = "/v2/conf/pub:";
+    try {
+      return await this._instancePublic({ method, url, data});
+    } catch(e) {
+      console.log(e);
     }
   }
 

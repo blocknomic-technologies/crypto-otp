@@ -14,26 +14,14 @@ module.exports = class Bitfinex {
     });
   }
 
-  async getTickers(data) {
-    var body = data;
-    var path = "/v2/tickers";
-    var method = "get";
-    try {
-      return await this._instancePublic({
-        url: path,
-        method: method,
-        data: body
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  }
+  
+  /*** Get account wallet balances for a specific point in time using the "end" param. */
 
-  async postWallets(data) {
-    var body = data;
-    var path = "/v2/auth/r/wallets";
-    var method = "post";
-    var header = this.authenticatedHeader(path, body);
+  walletHistory = async (data) => {
+    const body = data;
+    const path = "/v2/auth/r/wallets/hist";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -45,6 +33,161 @@ module.exports = class Bitfinex {
       console.log(e);
     }
   }
+
+  /*** Get active orders  */
+
+  retrieveOrders = async (data) => {
+    const body = data;
+    const path = "/v2/auth/r/orders";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Submit an Order.  */
+
+  submitOrder = async (data) => {
+    const body = data;
+    const path = "/v2/auth/w/order/submit";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Cancel an existing order, can be used to cancel margin, exchange, and derivative orders.  */
+
+  updateOrder = async (data) => {
+    const body = data;
+    const path = "/v2/auth/w/order/update";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Cancel an existing order, can be used to cancel margin, exchange, and derivative orders.  */
+
+  cancelOrder = async (data) => {
+    const body = data;
+    const path = "/v2/auth/w/order/cancel";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Send Multiple order-related operations.  */
+
+  multiOrder = async (data) => {
+    const body = data;
+    const path = "/v2/auth/w/order/multi";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /*** Cancel multiple orders simultaneously.  */
+
+  cancelMultiOrder = async (data) => {
+    const body = data;
+    const path = "/v2/auth/w/order/cancel/multi";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Returns the most recent closed or canceled orders up to circa two weeks ago   */
+
+  orderHistory = async (data) => {
+    const body = data;
+    const path = "/v2/auth/r/orders/hist";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /*** Returns the most recent closed or canceled orders up to circa two weeks ago   */
+  
+  orderHistory = async (data) => {
+    const body = data;
+    const path = "/v2/auth/r/orders/hist";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
 
   authenticatedHeader(path, body = "") {
     var nonce = (Date.now() * 10000).toString();

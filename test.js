@@ -22,7 +22,8 @@ var updOrder = { id: 12345, price: '15', amount: '0.001' };
 async function test() {
   //  var response = await Bitmex.getUserWallet(wallet);
    // var response = await Bitfinex.getTickers(ticker);
-     var response = await Bitmex.postOrder(data);
+    // var response = await Bitmex.postOrder(data);
+    var response = await Bitfinex.postWallets(bitwallet);
   console.log(response);
 }
 

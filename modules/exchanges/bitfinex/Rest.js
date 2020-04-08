@@ -30,7 +30,7 @@ module.exports = class Bitfinex {
     }
   }
 
-  postWallets = async (data) => {
+  async postWallets(data) {
     const body = data;
     const path = "/v2/auth/r/wallets";
     const method = "post";

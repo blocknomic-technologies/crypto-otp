@@ -31,10 +31,10 @@ module.exports = class Bitfinex {
   }
 
   async postWallets(data) {
-    const body = data;
-    const path = "/v2/auth/r/wallets";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+    var body = data;
+    var path = "/v2/auth/r/wallets";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -202,24 +202,6 @@ module.exports = class Bitfinex {
   }
 
 
-  /*** Returns the most recent closed or canceled orders up to circa two weeks ago   */
-  
-  async orderHistory(data) {
-    var body = data;
-    var path = "/v2/auth/r/orders/hist";
-    var method = "post";
-    var header = this.authenticatedHeader(path, body);
-    try {
-      return await this._instanceAuthenticated({
-        method: method,
-        data: body,
-        url: path,
-        headers: header
-      });
-    } catch (e) {
-      console.log(e);
-    }
-  }
 
 
   authenticatedHeader(path, body = "") {

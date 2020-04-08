@@ -283,7 +283,7 @@ module.exports = class Bitfinex {
 
   async retrievePositions(data) {
     var body = data;
-    var path = `/v2/auth/r/positions`;
+    var path = "/v2/auth/r/positions";
     var method = "post";
     var header = this.authenticatedHeader(path, body);
     try {
@@ -302,7 +302,7 @@ module.exports = class Bitfinex {
 
   async claimPosition(data) {
     var body = data;
-    var path = `/v2/auth/w/position/claim`;
+    var path = "/v2/auth/w/position/claim";
     var method = "post";
     var header = this.authenticatedHeader(path, body);
     try {
@@ -321,7 +321,7 @@ module.exports = class Bitfinex {
 
   async positionHistory(data) {
     var body = data;
-    var path = `/v2/auth/r/positions/hist`;
+    var path = "/v2/auth/r/positions/hist";
     var method = "post";
     var header = this.authenticatedHeader(path, body);
     try {
@@ -340,7 +340,7 @@ module.exports = class Bitfinex {
 
    async positionAudit(data) {
     var body = data;
-    var path = `/v2/auth/r/positions/audit`;
+    var path = "/v2/auth/r/positions/audit";
     var method = "post";
     var header = this.authenticatedHeader(path, body);
     try {
@@ -359,7 +359,7 @@ module.exports = class Bitfinex {
 
   async derivativePosition(data) {
     var body = data;
-    var path = `/v2/auth/w/deriv/collateral/set`;
+    var path = "/v2/auth/w/deriv/collateral/set";
     var method = "post";
     var header = this.authenticatedHeader(path, body);
     try {
@@ -397,7 +397,7 @@ module.exports = class Bitfinex {
 
    async submitFundOffers(data) {
     var body = data;
-    var path = `/v2/auth//w/funding/offer/submit`;
+    var path = "/v2/auth//w/funding/offer/submit";
     var method = "post";
     var header = this.authenticatedHeader(path, body);
     try {
@@ -417,7 +417,7 @@ module.exports = class Bitfinex {
 
   async cancelFundingOffer(data) {
     var body = data;
-    var path = `/v2/auth/w/funding/offer/cancel`;
+    var path = "/v2/auth/w/funding/offer/cancel";
     var method = "post";
     var header = this.authenticatedHeader(path, body);
     try {

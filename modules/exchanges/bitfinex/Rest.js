@@ -1,5 +1,5 @@
-const crypto = require("crypto");
-const axios = require("axios");
+var crypto = require("crypto");
+var axios = require("axios");
 module.exports = class Bitfinex {
   constructor(key, secret) {
     this._apiKey = key;
@@ -14,14 +14,47 @@ module.exports = class Bitfinex {
     });
   }
 
+
+  async getTickers(data) {
+    var body = data;
+    var path = "/v2/tickers";
+    var method = "get";
+    try {
+      return await this._instancePublic({
+        url: path,
+        method: method,
+        data: body
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  postWallets = async (data) => {
+    const body = data;
+    const path = "/v2/auth/r/wallets";
+    const method = "post";
+    const header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
   
   /*** Get account wallet balances for a specific point in time using the "end" param. */
 
-  walletHistory = async (data) => {
-    const body = data;
-    const path = "/v2/auth/r/wallets/hist";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async walletHistory(data) {
+    var body = data;
+    var path = "/v2/auth/r/wallets/hist";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -36,11 +69,11 @@ module.exports = class Bitfinex {
 
   /*** Get active orders  */
 
-  retrieveOrders = async (data) => {
-    const body = data;
-    const path = "/v2/auth/r/orders";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async retrieveOrders(data) {
+    var body = data;
+    var path = "/v2/auth/r/orders";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -55,11 +88,11 @@ module.exports = class Bitfinex {
 
   /*** Submit an Order.  */
 
-  submitOrder = async (data) => {
-    const body = data;
-    const path = "/v2/auth/w/order/submit";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async submitOrder(data) {
+    var body = data;
+    var path = "/v2/auth/w/order/submit";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -74,11 +107,11 @@ module.exports = class Bitfinex {
 
   /*** Cancel an existing order, can be used to cancel margin, exchange, and derivative orders.  */
 
-  updateOrder = async (data) => {
-    const body = data;
-    const path = "/v2/auth/w/order/update";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async updateOrder(data) {
+    var body = data;
+    var path = "/v2/auth/w/order/update";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -93,11 +126,11 @@ module.exports = class Bitfinex {
 
   /*** Cancel an existing order, can be used to cancel margin, exchange, and derivative orders.  */
 
-  cancelOrder = async (data) => {
-    const body = data;
-    const path = "/v2/auth/w/order/cancel";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async cancelOrder(data) {
+    var body = data;
+    var path = "/v2/auth/w/order/cancel";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -112,11 +145,11 @@ module.exports = class Bitfinex {
 
   /*** Send Multiple order-related operations.  */
 
-  multiOrder = async (data) => {
-    const body = data;
-    const path = "/v2/auth/w/order/multi";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async multiOrder(data) {
+    var body = data;
+    var path = "/v2/auth/w/order/multi";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -132,11 +165,11 @@ module.exports = class Bitfinex {
 
   /*** Cancel multiple orders simultaneously.  */
 
-  cancelMultiOrder = async (data) => {
-    const body = data;
-    const path = "/v2/auth/w/order/cancel/multi";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async cancelMultiOrder(data) {
+    var body = data;
+    var path = "/v2/auth/w/order/cancel/multi";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -151,11 +184,11 @@ module.exports = class Bitfinex {
 
   /*** Returns the most recent closed or canceled orders up to circa two weeks ago   */
 
-  orderHistory = async (data) => {
-    const body = data;
-    const path = "/v2/auth/r/orders/hist";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async orderHistory(data) {
+    var body = data;
+    var path = "/v2/auth/r/orders/hist";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,
@@ -171,11 +204,11 @@ module.exports = class Bitfinex {
 
   /*** Returns the most recent closed or canceled orders up to circa two weeks ago   */
   
-  orderHistory = async (data) => {
-    const body = data;
-    const path = "/v2/auth/r/orders/hist";
-    const method = "post";
-    const header = this.authenticatedHeader(path, body);
+  async orderHistory(data) {
+    var body = data;
+    var path = "/v2/auth/r/orders/hist";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
     try {
       return await this._instanceAuthenticated({
         method: method,

@@ -357,22 +357,80 @@ module.exports = class Bitfinex {
 
      /*** Update the amount of collateral for a Derivative position */
 
-     async derivativePosition(data) {
-      var body = data;
-      var path = `/v2/auth/w/deriv/collateral/set`;
-      var method = "post";
-      var header = this.authenticatedHeader(path, body);
-      try {
-        return await this._instanceAuthenticated({
-          method: method,
-          data: body,
-          url: path,
-          headers: header
-        });
-      } catch (e) {
-        console.log(e);
-      }
+  async derivativePosition(data) {
+    var body = data;
+    var path = `/v2/auth/w/deriv/collateral/set`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
     }
+  }
+
+  /*** Update the amount of collateral for a Derivative position */
+
+  async fundOffers(data) {
+    var body = data;
+    var path = `/v2/auth/r/funding/offers/${body.symbol}`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+   /*** Submit a new funding offer. */
+
+   async submitFundOffers(data) {
+    var body = data;
+    var path = `/v2/auth//w/funding/offer/submit`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /*** Cancels an existing Funding Offer based on the offer ID entered. */
+
+  async cancelFundingOffer(data) {
+    var body = data;
+    var path = `/v2/auth/w/funding/offer/cancel`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
 
   authenticatedHeader(path, body = "") {

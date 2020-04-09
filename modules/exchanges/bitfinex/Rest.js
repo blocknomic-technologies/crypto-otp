@@ -432,6 +432,236 @@ module.exports = class Bitfinex {
     }
   }
 
+  /*** Cancel all of your current funding offers. */
+
+  async cancelAllFundingOffer(data) {
+    var body = data;
+    var path = "/v2/auth/w/funding/offer/cancel/all";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Return Taken "Used" or "Unused" funding. */
+
+  async closeFund(data) {
+    var body = data;
+    var path = "/v2/auth/w/funding/close";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Return Taken "Used" or "Unused" funding. */
+
+  async closeFund(data) {
+    var body = data;
+    var path = "/v2/auth/w/funding/close";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Activate or deactivate auto-renew.  */
+
+  async autoRenewFund(data) {
+    var body = data;
+    var path = "/v2/auth/w/funding/auto";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+    /*** Toggle to keep funding taken */
+
+  async keepFunding(data) {
+    var body = data;
+    var path = "/v2/auth/w/funding/keep";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Get past inactive funding offers.  */
+
+  async fundOffersHistory(data) {
+    var body = data;
+    var path = `/v2/auth/r/funding/offers/${body.symbol}/hist`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Funds not used in active positions  */
+
+  async fundLoans(data) {
+    var body = data;
+    var path = `/v2/auth/r/funding/loans/${body.symbol}`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /*** Inactive funds not used in positions.  */
+
+  async fundLoansHistory(data) {
+    var body = data;
+    var path = `/v2/auth/r/funding/loans/${body.symbol}/hist`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+    /*** Funds used in active positions  */
+
+    async fundCredits(data) {
+      var body = data;
+      var path = `/v2/auth/r/funding/credits/${body.symbol}`;
+      var method = "post";
+      var header = this.authenticatedHeader(path, body);
+      try {
+        return await this._instanceAuthenticated({
+          method: method,
+          data: body,
+          url: path,
+          headers: header
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  
+   /*** Inactive funds used in positions. */
+
+   async fundCreditsHistory(data) {
+    var body = data;
+    var path = `/v2/auth/r/funding/credits/${body.symbol}/hist`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+    /*** Get funding trades */
+
+    async fundingTrades(data) {
+      var body = data;
+      var path = `/v2/auth/r/funding/trades/${body.symbol}/hist`;
+      var method = "post";
+      var header = this.authenticatedHeader(path, body);
+      try {
+        return await this._instanceAuthenticated({
+          method: method,
+          data: body,
+          url: path,
+          headers: header
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+
+    /*** Get account funding info */
+
+    async fundingInfo(data) {
+      var body = data;
+      var path = `/v2/auth/r/info/funding/${body.symbol}`;
+      var method = "post";
+      var header = this.authenticatedHeader(path, body);
+      try {
+        return await this._instanceAuthenticated({
+          method: method,
+          data: body,
+          url: path,
+          headers: header
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
 
   authenticatedHeader(path, body = "") {
     var nonce = (Date.now() * 10000).toString();

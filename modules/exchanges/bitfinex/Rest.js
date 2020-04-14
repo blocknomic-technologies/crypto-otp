@@ -623,31 +623,320 @@ module.exports = class Bitfinex {
     }
   }
 
-    /*** Get funding trades */
+  /*** Get funding trades */
 
-    async fundingTrades(data) {
-      var body = data;
-      var path = `/v2/auth/r/funding/trades/${body.symbol}/hist`;
-      var method = "post";
-      var header = this.authenticatedHeader(path, body);
-      try {
-        return await this._instanceAuthenticated({
-          method: method,
-          data: body,
-          url: path,
-          headers: header
-        });
-      } catch (e) {
-        console.log(e);
-      }
+  async fundingTrades(data) {
+    var body = data;
+    var path = `/v2/auth/r/funding/trades/${body.symbol}/hist`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
     }
+  }
 
 
-    /*** Get account funding info */
+  /*** Get account funding info */
 
-    async fundingInfo(data) {
+  async fundingInfo(data) {
+    var body = data;
+    var path = `/v2/auth/r/info/funding/${body.symbol}`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Retrieve the user ID, email, username and timezone setting for the account associated with the API key used. */
+
+  async userInfo(data) {
+    var body = data;
+    var path = "/v2/auth/r/info/user";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Retrieve a list of past logins. */
+
+  async loginHistory(data) {
+    var body = data;
+    var path = "/v2/auth/r/login/hist";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Transfer funds between wallets.  */
+
+  async walletTransfer(data) {
+    var body = data;
+    var path = "/v2/auth/w/transfer";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+   /*** Retrieve your deposit address or generate a new deposit address for a specific currency and wallet. */
+
+   async depositAddress(data) {
+    var body = data;
+    var path = "/v2/auth/w/deposit/address";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  
+  /*** Retrieve your deposit address or generate a new deposit address for a specific currency and wallet. */
+
+  async generateInvoice(data) {
+    var body = data;
+    var path = "/v2/auth/w/deposit/invoice";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+    /*** Allows you to request a withdrawal from one of your wallets. */
+
+  async Withdrawal(data) {
+    var body = data;
+    var path = "/v2/auth/w/withdraw";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Allows you to request a withdrawal from one of your wallets. */
+
+  async Withdrawal(data) {
+    var body = data;
+    var path = "/v2/auth/w/withdraw";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** View your past deposits/withdrawals. */
+
+  async movements(data) {
+    var body = data;
+    var path = `/v2/auth/r/movements/${body.currency}/hist`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+   /*** Retrieve a list of active price alerts. */
+
+   async alertList(data) {
+    var body = data;
+    var path = "/v2/auth/r/alerts";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /*** Sets up a price alert at the given value */
+
+  async alertSet(data) {
+    var body = data;
+    var path = "/v2/auth/w/alert/set";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Delete an active alert. */
+
+  async deleteAlert(data) {
+    var body = data;
+    var path = `/v2/auth/w/alert/price:${body.symbol}:${body.price}/del`;
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Calculate the balance available for orders/offers */
+
+  async availableBalance(data) {
+    var body = data;
+    var path = "/v2/auth/calc/order/avail";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /*** Allows you to create custom settings by creating key: value pairs. */
+
+  async userSettingWrite(data) {
+    var body = data;
+    var path = "/v2/auth/w/settings/set";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+   /*** Allows you to read custom settings by providing a key. */
+
+   async userSettingRead(data) {
+    var body = data;
+    var path = "/v2/auth/r/settings";
+    var method = "post";
+    var header = this.authenticatedHeader(path, body);
+    try {
+      return await this._instanceAuthenticated({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+     /*** Allows you to delete custom settings. */
+
+     async userSettingDelete(data) {
       var body = data;
-      var path = `/v2/auth/r/info/funding/${body.symbol}`;
+      var path = "/v2/auth/w/settings/del";
       var method = "post";
       var header = this.authenticatedHeader(path, body);
       try {

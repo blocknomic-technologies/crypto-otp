@@ -30,6 +30,131 @@ module.exports = class Bitfinex {
     }
   }
 
+
+  /** The Public Books endpoint allows you to keep track of the state of Bitfinex order books */
+
+  async getBook(data) {
+    var body = data;
+    var path = (body.symbol && body.precision) ? `/v2/book/${body.symbol}/${body.precision}` : "/v2/book";
+    var method = "get";
+    try {
+      return await this._instancePublic({
+        url: path,
+        method: method,
+        data: body
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+    /** The trades endpoint allows the retrieval of past public trades and includes details such as price, size, and time.  */
+
+    async getTrades(data) {
+      var body = data;
+      var path = `/v2/trades/${body.symbol}/hist`;
+      var method = "get";
+      try {
+        return await this._instancePublic({
+          url: path,
+          method: method,
+          data: body
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+
+    /** The Stats endpoint provides various statistics on a specified trading pair or funding currency.   */
+
+    async getStats(data) {
+    var body = data;
+    var path = `/v2/stats1/${body.key}:${body.size}:${body.symbol}:${body.symbol}/${body.section}`;
+    var method = "get";
+    try {
+      return await this._instancePublic({
+        url: path,
+        method: method,
+        data: body
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /**  The leaderboards endpoint allows you to retrieve leaderboard standings for unrealized profit (period delta), unrealized profit (inception), volume, and realized profit. */
+
+  async getLeaderboards(data) {
+    var body = data;
+    var path =`/v2/rankings/${body.key}:${body.timeFrame}:${body.symbol}/hist`;
+    var method = "get";
+    try {
+      return await this._instancePublic({
+        url: path,
+        method: method,
+        data: body
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Endpoint to retrieve liquidations.  */
+
+  async getLiquidationFeeds(data) {
+    var body = data;
+    var path ="/v2/liquidations/hist";
+    var method = "get";
+    try {
+      return await this._instancePublic({
+        url: path,
+        method: method,
+        data: body
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+   /** The Candles endpoint provides OCHL (Open, Close, High, Low) and volume data for the specified funding currency or trading pair. */
+
+   async getCandles(data) {
+    var body = data;
+    var path =`/v2/candles/trade:${body.timeFrame}:${body.symbol}/${body.section}`;
+    var method = "get";
+    try {
+      return await this._instancePublic({
+        url: path,
+        method: method,
+        data: body
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+   /** Fetch currency and symbol site configuration data. */
+
+   async getConfigs(data) {
+    var body = data;
+    var path =`/v2/conf/pub:${body.action}:${body.object}:${body.detail}`;
+    var method = "get";
+    try {
+      return await this._instancePublic({
+        url: path,
+        method: method,
+        data: body
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+
   async postWallets(data) {
     var body = data;
     var path = "/v2/auth/r/wallets";
@@ -47,12 +172,33 @@ module.exports = class Bitfinex {
     }
   }
 
-  
-  /*** Get account wallet balances for a specific point in time using the "end" param. */
 
-  async walletHistory(data) {
+    /*** Get account wallet balances for a specific point in time using the "end" param. */
+
+    async walletHistory(data) {
+      var body = data;
+      var path = "/v2/auth/r/wallets/hist";
+      var method = "post";
+      var header = this.authenticatedHeader(path, body);
+      try {
+        return await this._instanceAuthenticated({
+          method: method,
+          data: body,
+          url: path,
+          headers: header
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  
+
+  
+  /*** Calculate the average execution price for Trading or rate for Margin funding. */
+
+  async marketAveragePrice(data) {
     var body = data;
-    var path = "/v2/auth/r/wallets/hist";
+    var path = `/v2/calc/trade/avg?symbol=${body.symbol}&amount=${body.amount}`;
     var method = "post";
     var header = this.authenticatedHeader(path, body);
     try {
@@ -66,6 +212,26 @@ module.exports = class Bitfinex {
       console.log(e);
     }
   }
+
+    /*** Calculate the exchange rate between two currencies */
+
+    async foreignExchangeRate(data) {
+      var body = data;
+      var path = "/v2/calc/fx";
+      var method = "post";
+      var header = this.authenticatedHeader(path, body);
+      try {
+        return await this._instanceAuthenticated({
+          method: method,
+          data: body,
+          url: path,
+          headers: header
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
 
   /*** Get active orders  */
 

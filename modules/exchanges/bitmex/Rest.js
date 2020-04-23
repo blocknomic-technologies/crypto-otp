@@ -424,22 +424,225 @@ module.exports = class Bitmex {
 
    /** Get your user events */
 
- async getUserEvent(data) {
-  var body = JSON.stringify(data);
-  var path = `/api/v1/userEvent?count=${data.count}&startId=${data.startId}`;
-  var method = "get";
-  var header = this.authenticatedHeader(method, path, body);
-  try {
-    return await this._instance({
-      method: method,
-      data: body,
-      url: path,
-      headers: header
-    });
-  } catch (e) {
-    console.log(e);
+  async getUserEvent(data) {
+    var body = JSON.stringify(data);
+    var path = `/api/v1/userEvent?count=${data.count}&startId=${data.startId}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
-}
+
+   /** Get trades 
+    * reverse true/false
+   */
+
+   async getTrade(data) {
+    var body = JSON.stringify(data);
+    var path = (data.symbol) ? `/api/v1/trade?count=${data.count}&reverse=${data.reverse}&symbol=${data.symbol}` : `/api/v1/trade?count=${data.count}&reverse=${data.reverse}`  ;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+    /** Get previous trades in time buckets 
+     * binSize - Time interval to bucket by. Available options: [1m,5m,1h,1d].
+    * reverse true/false
+    *  partial true/false - If true, will send in-progress (incomplete) bins for the current time period.
+    * count - number of results to be returned
+   */
+
+  async getPrevTradeBuckets(data) {
+    var body = JSON.stringify(data);
+    var path = `/api/v1/trade/bucketed?binSize=${data.binSize}&partial=${data.partial}&count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Get exchange-wide and per-series turnover and volume statistics. */
+
+  async getStats() {
+    var path = "/api/v1/stats";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Get historical exchange-wide and per-series turnover and volume statistics */
+
+  async getStatsHistory() {
+    var path = "/api/v1/stats/history";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /** Get a summary of exchange statistics in USD. */
+
+  async getStatsHistoryUSD() {
+    var path = "/api/v1/stats/historyUSD";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Get settlement history. */
+
+  async getSettlement(data) {
+    var path = (data.symbol) ? `/api/v1/settlement?count=${data.count}&reverse=${data.reverse}&symbol=${data.symbol}` : `/api/v1/settlement?count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /** Get model schemata for data objects returned by this API. */
+
+  async getSchema(data) {
+    var path = (data.model) ? `/api/v1/schema?model=${data.model}` : `/api/v1/schema`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+   /** Returns help text & subject list for websocket usage. */
+
+   async getWebsocketHelp(data) {
+    var path = `/api/v1/schema/websocketHelp`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Get your API Keys. */
+
+  async getApiKeys(data) {
+    var path = `/api/v1/apiKey?reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+   /** Get funding history */
+
+   async fundHistory(data) {
+    var path = `/api/v1/funding?count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+    /** Get your current GlobalNotifications. currently been worked on by bitmex. */
+
+    async globalNotification() {
+      var path = "/api/v1/globalNotification";
+      var method = "get";
+      var header = this.authenticatedHeader(method, path);
+      try {
+        return await this._instance({
+          method: method,
+          url: path,
+          headers: header
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    
+  
 
 
   authenticatedHeader(verb, path, body = "") {

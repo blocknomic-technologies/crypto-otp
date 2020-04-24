@@ -625,10 +625,401 @@ module.exports = class Bitmex {
     }
   }
 
-    /** Get your current GlobalNotifications. currently been worked on by bitmex. */
+  /** Get your current GlobalNotifications. currently been worked on by bitmex. */
 
-    async globalNotification() {
-      var path = "/api/v1/globalNotification";
+  async globalNotification() {
+    var path = "/api/v1/globalNotification";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Enable isolated margin or cross margin per-position */
+
+  async marginPosition(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/position/isolate";
+    var method = "post";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Choose leverage for a position */
+
+  async changeLeveragePosition(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/position/leverage";
+    var method = "post";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+    
+  
+  /** Update your risk limit. */
+
+  async riskLimit(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/position/riskLimit";
+    var method = "post";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Transfer equity in or out of a position. */
+
+  async transferMargin(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/position/transferMargin";
+    var method = "post";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Amend the quantity or price of an open order */
+
+  async amendOrder(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/order";
+    var method = "put";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /** Get your orders */
+
+  async getOrder(data) {
+    var path = `/api/v1/order?symbol=${data.symbol}&count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Cancel order(s). Send multiple order IDs to cancel in bulk */
+
+  async cancelOrder(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/order";
+    var method = "delete";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /** Cancels all of your orders*/
+
+  async cancelAllOrders(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/order/all";
+    var method = "delete";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /** Amend multiple orders for the same symbol. */
+
+  async amendMultipleOrder(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/order/bulk";
+    var method = "put";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Create multiple new orders for the same symbol. */
+
+  async createOrders(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/order/bulk";
+    var method = "post";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Automatically cancel all your orders after a specified timeout */
+
+  async cancelAllAfter(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/order/cancelAllAfter";
+    var method = "post";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Close a position. [Deprecated, use POST /order with execInst: 'Close'] */
+
+  async closePosition(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/order/closePosition";
+    var method = "post";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data: body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Get liquidation orders */
+
+  async getLiquidation(data) {
+    var path = (data.start) ? `/api/v1/liquidation?symbol=${data.symbol}&count=${data.count}&start=${data.start}&reverse=${data.reverse}`: `/api/v1/liquidation?symbol=${data.symbol}&count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  /** Get current leaderboard */
+
+  async getleaderboard(data) {
+    var path = `/api/v1/leaderboard?method=${data.method}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+   /** Get your alias on the leaderboard */
+
+   async getleaderboardAlias(data) {
+    var path = "/api/v1/leaderboard/name";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+   /** Get insurance fund history */
+
+   async getInsurance(data) {
+    var path = (data.start) ? `/api/v1/insurance?symbol=${data.symbol}&count=${data.count}&start=${data.start}&reverse=${data.reverse}`: `/api/v1/insurance?symbol=${data.symbol}&count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+    /** Get instruments */
+
+    async getInstrument(data) {
+    var path = (data.startTime) ? `/api/v1/instrument?symbol=${data.symbol}&count=${data.count}&startTime=${data.startTime}&reverse=${data.reverse}`: `/api/v1/instrument?symbol=${data.symbol}&count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+
+  /** Get all active instruments and instruments that have expired in <24hrs.s */
+
+  async getActiveInstrument(data) {
+    var path = "/api/v1/instrument/active";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /** Helper method. Gets all active instruments and all indices. This is a join of the result of /indices and /active */
+
+  async getActiveIndices(data) {
+    var path = "/api/v1/instrument/activeAndIndices";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+  /** Return all active contract series and interval pairs. */
+
+  async getActiveIntervals(data) {
+    var path = "/api/v1/instrument/activeIntervals";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+    /** Show constituent parts of an index. */
+
+    async getCompositeIndex(data) {
+      var path = (data.start) ? `/api/v1/instrument/compositeIndex?symbol=${data.symbol}&count=${data.count}&startTime=${data.start}&reverse=${data.reverse}`: `/api/v1/instrument/compositeIndex?symbol=${data.symbol}&count=${data.count}&reverse=${data.reverse}`;
       var method = "get";
       var header = this.authenticatedHeader(method, path);
       try {
@@ -641,8 +1032,137 @@ module.exports = class Bitmex {
         console.log(e);
       }
     }
-    
+
+
+  /** Show constituent parts of an index. */
+
+  async getCompositeIndex(data) {
+    var path = (data.start) ? `/api/v1/instrument/compositeIndex?symbol=${data.symbol}&count=${data.count}&startTime=${data.start}&reverse=${data.reverse}`: `/api/v1/instrument/compositeIndex?symbol=${data.symbol}&count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+   /** Get all price indices. */
+
+   async getInstrumentIndices(data) {
+    var path = "/api/v1/instrument/indices";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+
+   /** Get all chat messages */
+
+   async getChats(data) {
+    var path = `/api/v1/chat?count=${data.count}&reverse=${data.reverse}`;
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
   
+   /** Send a chat message. */
+
+   async postChats(data) {
+    var body = JSON.stringify(data);
+    var path = "/api/v1/chat";
+    var method = "post";
+    var header = this.authenticatedHeader(method, path, body);
+    try {
+      return await this._instance({
+        method: method,
+        data:body,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }  
+
+
+   /** GET  available channels. */
+
+   async getChatChannels(data) {
+    var path = "/api/v1/chat/channels";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+
+   /** Get connected users */
+
+   async getChatChannels(data) {
+    var path = "/api/v1/chat/connected";
+    var method = "get";
+    var header = this.authenticatedHeader(method, path);
+    try {
+      return await this._instance({
+        method: method,
+        url: path,
+        headers: header
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+    /** Get urgent (banner) announcements */
+
+    async getUrgentAnouncement(data) {
+      var path = "/api/v1/announcement/urgent";
+      var method = "get";
+      var header = this.authenticatedHeader(method, path);
+      try {
+        return await this._instance({
+          method: method,
+          url: path,
+          headers: header
+        });
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+
 
 
   authenticatedHeader(verb, path, body = "") {

@@ -19,11 +19,13 @@ var ticker = { symbols: "tBTCUSD" };
 var bitwallet = {};
 var order = {  type: 'LIMIT', symbol: 'tBTCUSD', price: '15', amount: '0.001' };
 var updOrder = { id: 12345, price: '15', amount: '0.001' };
+var trade = { symbol : 'XBt', count: 100, reverse:true, partial: true, binSize: '1m' };
 async function test() {
-  //  var response = await Bitmex.getUserWallet(wallet);
+    // var response = await Bitmex.getPrevTradeBuckets(trade);
+    var response = await Bitmex.globalNotification();
    // var response = await Bitfinex.getTickers(ticker);
     // var response = await Bitmex.postOrder(data);
-    var response = await Bitfinex.postWallets(bitwallet);
+  //  var response = await Bitfinex.postWallets(bitwallet);
   console.log(response);
 }
 

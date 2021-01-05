@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/blocknomic-technologies/crypto-otp#readme",
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "crypto": "^1.0.1"
   }
 }
